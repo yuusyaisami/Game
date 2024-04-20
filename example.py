@@ -1,8 +1,11 @@
+# サンプルコード
+# Gameのインスタンスをwhile文(繰り返し)の中で実行する
+# updateとdraw関数を実行してください
 import pygame
-import Game
-import Controller
+from Game import Game
+from Controller import Controller
 pygame.init()
-game = Game()
+game = Game.Game("example_scene") # 読み込むファイルの名前を入力する
 controller = Controller()
 def main():
     screen = pygame.display.set_mode((800, 600))
@@ -16,8 +19,9 @@ def main():
                 pygame.quit()
                 quit()
                 
-        game.update(screen)
-        screen.fill((255, 255, 255))
+        game.update()
+        screen.fill((255, 30, 30))
         game.draw(screen)
         pygame.display.update()
         clock.tick(60)
+main()

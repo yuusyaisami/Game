@@ -29,8 +29,9 @@ class Graphic:
         for m in range(len(self.layer)):
             if self.layer[m].order > max:
                 max = self.layer[m].order
-        for i in range(max):
+        for i in range(max + 1):
             self.__drawLayer__(i, screen)
+        self.layer = []
     def __drawLayer__(self, order, screen):
         for layer in self.layer:
             if layer.order == order:
@@ -46,33 +47,40 @@ class Graphic:
                 # ----------------------------------------------------------------------------------------------------------------- # 
     def clear_img(self):
         self.img = {}
+# --------------Layerのベースクラス-------------------
 class Layer:
     def __init__(self, rect, order=-1):
         self.rect = rect
         self.order = order
+#-----------------------------------------------------
+
+
+#---------------------Layerクラス----------------------
 class Image(Layer):
     def __init__(self, rect, img_name, ):
-        super().__init__(self, rect)
+        super().__init__(rect)
         self.type = "image"
         self.img_name = img_name
 class Font(Layer):
     def __init__(self, rect, text, color = (0, 0, 0), text_size = 16, text_font = "Sans"):
-        super().__init__(self, rect)
+        super().__init__(rect)
         self.type = "text"
         self.text = text
         self.text_size = text_size
         self.text_font = text_font
 class Square(Layer):
     def __init__(self, rect, color, radius = -1, width = 0):
-        super().__init__(self, rect)
+        super().__init__(rect)
         self.type = "square"
         self.color = color
         self.radius = radius
         self.width = width
 class circle(Layer):
     def __init__(self, rect, color, radius = -1, width = 0):
-        super().__init__(self, rect)
+        super().__init__(rect)
         self.type = "circle"
         self.color = color
         self.radius = radius
         self.width = width
+
+graphic = Graphic()
