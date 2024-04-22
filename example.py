@@ -3,10 +3,9 @@
 # updateとdraw関数を実行してください
 import pygame
 from Game import Game
-from Controller import Controller
+from Controller import controller
 pygame.init()
 game = Game.Game("example_scene") # 読み込むファイルの名前を入力する
-controller = Controller()
 def main():
     screen = pygame.display.set_mode((800, 600))
     clock = pygame.time.Clock()

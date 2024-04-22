@@ -61,7 +61,7 @@ class Image(Layer):
         super().__init__(rect)
         self.type = "image"
         self.img_name = img_name
-class Font(Layer):
+class Text(Layer):
     def __init__(self, rect, text, color = (0, 0, 0), text_size = 16, text_font = "Sans"):
         super().__init__(rect)
         self.type = "text"
