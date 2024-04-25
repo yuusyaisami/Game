@@ -1,5 +1,6 @@
 import importlib
 import threading
+import sys
 # ロードし描写するときの各モジュールには必ず各クラスのSceneクラスをmainにすること
 # Sceneクラスはupdate関数とdraw関数を必要とする
 
@@ -9,12 +10,9 @@ class Scene:
     def LoadScene(self, loadFile):
         """描写するファイルの名前をloadFileに入れる(.pyは抜き、ファイルには必ずMainクラスまたはmainクラスが存在することを条件とする)"""
         self.scene = []
-        module_name = f"{loadFile}"
-        try:
-            module = importlib.import_module(module_name)
-        except:
-            print(f"ファイル{loadFile}の読み込みに失敗しました")
-            exit()
+        module_name = loadFile
+        sys.path
+        module = importlib.import_module(module_name)
         try:
             self.scene.append(module.Main())
         except:

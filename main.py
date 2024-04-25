@@ -2,7 +2,7 @@ import pygame
 from Game import Game
 from Controller import controller
 pygame.init()
-game = Game.Game("Scene/MenuScene") # 読み込むファイルの名前を入力する
+game = Game("Scene.MenuScene") # 読み込むファイルの名前を入力する
 def main():
     screen = pygame.display.set_mode((800, 600))
     clock = pygame.time.Clock()
