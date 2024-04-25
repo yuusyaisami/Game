@@ -1,5 +1,5 @@
 import importlib
-
+import threading
 # ロードし描写するときの各モジュールには必ず各クラスのSceneクラスをmainにすること
 # Sceneクラスはupdate関数とdraw関数を必要とする
 
@@ -23,9 +23,12 @@ class Scene:
             except:
                 print(f"ファイル{loadFile}.main()の読み込みに失敗しました")
                 exit()
+        for scene in self.scene:
+            threading.Thread(target=scene.background())
     def update(self):
         for scene in self.scene:
             scene.update()
     def draw(self):
         for scene in self.scene:
             scene.draw()
+scene = Scene()

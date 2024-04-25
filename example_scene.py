@@ -6,6 +6,8 @@ class main():
         pass
     def update(self):
         pass
+    def background(self):
+        pass
     def draw(self):
         graphic.add_layer(Square(pygame.Rect(100, 100, 100, 100), (255, 255, 255), 5), 0)
     
