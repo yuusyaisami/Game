@@ -2,7 +2,7 @@ import pygame
 from Game import Game
 from Controller import controller
 pygame.init()
-game = Game("Scene.MenuScene") # 読み込むファイルの名前を入力する
+game = Game("scene.MenuScene") # 読み込むファイルの名前を入力する
 def main():
     screen = pygame.display.set_mode((800, 600))
     clock = pygame.time.Clock()
@@ -14,7 +14,7 @@ def main():
                 quit()
                 
         game.update()
-        screen.fill((255, 30, 30))
+        screen.fill((30, 30, 30))
         game.draw(screen)
         pygame.display.update()
         clock.tick(60)

@@ -43,6 +43,7 @@ class Text(Item):
         self.text = text
         self.font = "Sans"
         self.size = text_size
+
     def draw(self):
         Graphic.graphic.add_layer(Graphic.Text(self.rect, self.text, self.color, self.size ), self.order)
 
@@ -60,11 +61,12 @@ class CheckBox(Item):
         else:
             Graphic.graphic.add_Layer(Graphic.Square(self.rect, self.color, -5, 0), self.order)
 class Button(Item):
-    def __init__(self, rect, text, text_size, color, s_hover, order=-1):
+    def __init__(self, rect, text, text_size, color, s_hover, order=-1, set_center = False):
         super().__init__(rect, "button", color, s_hover=s_hover, order=order)
         self.text = text
         self.font = "Sans"
         self.size = text_size
+        self.set_center = set_center
     def draw(self):
-        Graphic.graphic.add_layer(Graphic.Square(self.rect, self.color ,-5, 5), self.order)
-        Graphic.graphic.add_layer(Graphic.Text(self.rect, self.text, self.color, self.size ), self.order)
+        Graphic.graphic.add_layer(Graphic.Square(self.rect, self.color ,5, 5), self.order)
+        Graphic.graphic.add_layer(Graphic.Text(self.rect, self.text, self.color, self.size, set_center=True), self.order)

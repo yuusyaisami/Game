@@ -21,8 +21,6 @@ class Scene:
             except:
                 print(f"ファイル{loadFile}.main()の読み込みに失敗しました")
                 exit()
-        for scene in self.scene:
-            threading.Thread(target=scene.background())
     def update(self):
         for scene in self.scene:
             scene.update()

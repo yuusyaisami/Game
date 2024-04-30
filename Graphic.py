@@ -20,8 +20,8 @@ class Graphic:
                 self.img[img_name] = pygame.transform.scale(pygame.image.load(img_path), (w, h))
     def get_font(self, name, size):
         for font in self.font:
-            if font.keys() == name + str(size):
-                return self.font[font.name + str(size)]
+            if font == name + str(size):
+                return self.font[font]
         self.font[font.name + str(size)] = pygame.font.SysFont(font.name + ".otf", size)
         return self.font[font.name + str(size)]
     def draw(self, screen):
@@ -31,6 +31,7 @@ class Graphic:
                 max = self.layer[m].order
         for i in range(max + 1):
             self.__drawLayer__(i, screen)
+        self.__drawLayer__(-1, screen)
         self.layer = []
     def __drawLayer__(self, order, screen):
         for layer in self.layer:
@@ -39,7 +40,13 @@ class Graphic:
                 if layer.type == "image":
                     screen.blit(self.img[layer.img_name], (layer.rect.x, layer.rect.y))
                 if layer.type == "text":
-                    screen.blit(self.get_font(layer.name, layer.size).render(layer.text, True, layer.color), (layer.x, layer.y))
+                    x = layer.rect.x
+                    y = layer.rect.y
+                    if layer.set_center:
+                        font = self.get_font(layer.text_font, layer.text_size)
+                        x = layer.rect.center[0] - (font.size(layer.text)[0] / 2)
+                        y = layer.rect.center[1] - (font.size(layer.text)[1] / 2)
+                        screen.blit(self.get_font(layer.text_font, layer.text_size).render(layer.text, True, layer.color), (x, y))
                 if layer.type == "square":
                     pygame.draw.rect(screen, layer.color, layer.rect, layer.width, layer.radius)
                 if layer.type == "circle":
@@ -62,12 +69,14 @@ class Image(Layer):
         self.type = "image"
         self.img_name = img_name
 class Text(Layer):
-    def __init__(self, rect, text, color = (0, 0, 0), text_size = 16, text_font = "Sans"):
+    def __init__(self, rect, text, color = (0, 0, 0), text_size = 16, text_font = "Sans", set_center = False):
         super().__init__(rect)
         self.type = "text"
         self.text = text
         self.text_size = text_size
         self.text_font = text_font
+        self.color = color
+        self.set_center = set_center
 class Square(Layer):
     def __init__(self, rect, color, radius = -1, width = 0):
         super().__init__(rect)

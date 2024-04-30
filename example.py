@@ -19,7 +19,7 @@ def main():
                 quit()
                 
         game.update()
-        screen.fill((255, 30, 30))
+        screen.fill((30, 30, 30))
         game.draw(screen)
         pygame.display.update()
         clock.tick(60)
